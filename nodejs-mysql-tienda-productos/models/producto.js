@@ -1,10 +1,10 @@
 const conexion = require("../conexion");
 
 module.exports = {
-    insertar(nombre, precio) {
+    insertar(nombre, precio, nombre2) {
         return new Promise((resolve, reject) => {
-            conexion.query(`insert into productos (nombre, precio) values (?, ?)`,
-                [nombre, precio], (err, resultados) => {
+            conexion.query(`insert into productos (nombre, precio, nombre2) values (?, ?, ?)`,
+                [nombre, precio, nombre2], (err, resultados) => {
                     if (err) reject(err);
                     else resolve(resultados.insertId);
                 });
@@ -12,7 +12,7 @@ module.exports = {
     },
     obtener() {
         return new Promise((resolve, reject) => {
-            conexion.query(`select id, nombre, precio from productos`,
+            conexion.query(`select id, nombre, precio, nombre2 from productos`,
                 (err, resultados) => {
                     if (err) reject(err);
                     else resolve(resultados);
@@ -21,7 +21,7 @@ module.exports = {
     },
     obtenerPorId(id) {
         return new Promise((resolve, reject) => {
-            conexion.query(`select id, nombre, precio from productos where id = ?`,
+            conexion.query(`select id, nombre, precio, nombre2 from productos where id = ?`,
                 [id],
                 (err, resultados) => {
                     if (err) reject(err);
@@ -29,7 +29,7 @@ module.exports = {
                 });
         });
     },
-    actualizar(id, nombre, precio) {
+    actualizar(id, nombre, precio, ) {
         return new Promise((resolve, reject) => {
             conexion.query(`update productos
             set nombre = ?,
