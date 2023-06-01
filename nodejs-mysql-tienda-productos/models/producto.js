@@ -29,13 +29,14 @@ module.exports = {
                 });
         });
     },
-    actualizar(id, nombre, precio, ) {
+    actualizar(id, nombre, precio, nombre2) {
         return new Promise((resolve, reject) => {
             conexion.query(`update productos
             set nombre = ?,
             precio = ?
+            nombre2 = ?
             where id = ?`,
-                [nombre, precio, id],
+                [nombre, precio, nombre2, id],
                 (err) => {
                     if (err) reject(err);
                     else resolve();
